@@ -60,7 +60,7 @@ const App = () => {
 
     try {
       const adzuna_endpoint = query
-        ? `${ADZUNA_API_BASE_URL}/jobs/us/search/1?app_id=${ADZUNA_API_ID}&app_key=${ADZUNA_API_KEY}&results_per_page=20&what=${encodeURIComponent(query)}`
+        ? `${ADZUNA_API_BASE_URL}/jobs/us/search/1?app_id=${ADZUNA_API_ID}&app_key=${ADZUNA_API_KEY}&results_per_page=20&what=software%20${encodeURIComponent(query)}`
         : `${ADZUNA_API_BASE_URL}/jobs/us/search/1?app_id=${ADZUNA_API_ID}&app_key=${ADZUNA_API_KEY}&results_per_page=20&sort_by=relevance&what=software`;
       const adzuna_response = await fetch(adzuna_endpoint, ADZUNA_API_OPTIONS);
     
