@@ -7,5 +7,5 @@ This project provides the lastest tech job postings and trends. More details inc
  - Search job postings underneath "software" using any keywords
 
 ## Credits:
- - Job postings from [Adzuna API] (http://www.adzuna.co.uk)
- - Company logos from [logo.dev] (logo.dev)
+ - Job postings from [Adzuna API](http://www.adzuna.co.uk)
+ - Company logos from [logo.dev](logo.dev)
