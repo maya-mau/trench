@@ -1,5 +1,4 @@
-import React, { useEffect, useState } from 'react';
-import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
+import { useEffect, useState } from 'react';
 import Search from '../components/Search.tsx';
 import Spinner from '../components/Spinner.tsx';
 import JobCard from '../components/JobCard.tsx';
