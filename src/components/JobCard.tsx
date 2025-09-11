@@ -1,4 +1,6 @@
 import React from 'react'
+import { Link } from 'react-router-dom';
+
 
 interface Job {
   title: string;
@@ -24,7 +26,7 @@ interface JobCardProps {
 }
 
 const JobCard: React.FC<JobCardProps> = ( {job: 
-    { title, company, location, created, contract_time, salary_min, salary_max, salary_is_predicted}
+    { id, title, company, location, created, contract_time, salary_min, salary_max, salary_is_predicted}
 }) => {
 
     const guessedDomain = company.display_name.replace(/\s+/g, "").toLowerCase() + ".com";
@@ -32,35 +34,40 @@ const JobCard: React.FC<JobCardProps> = ( {job:
     // Logo.dev URL (with fallback to a default image)
     const logoUrl = `https://img.logo.dev/${guessedDomain}?token=${import.meta.env.VITE_LOGO_API_KEY}&size=400`;
 
-    return (
-        <div className="job-card">
-            <img
-                src={logoUrl}
-                alt={`${company.display_name} logo`}
-                className="h-20 w-20 rounded-lg object-contain bg-white"
-                onError={ (event) => { // fallback if logo doesn’t exist
-                    (event.currentTarget as HTMLImageElement).src = "/default-company.png";
-                } }
-            />
+    return ( 
+        <Link to={`/job/${id}`} className="block">
+            <div className="job-card">
+                <div className="header">
+                    <img
+                        src={logoUrl}
+                        alt={`${company.display_name} logo`}
+                        className="mr-2 mb-2 h-22 w-22 rounded-lg object-contain bg-white"
+                        onError={ (event) => { // fallback if logo doesn’t exist
+                            (event.currentTarget as HTMLImageElement).src = "/default-company.png";
+                        } }
+                    />
 
-            
-            <div>
-                <h3 className="mb-2">{title}</h3>
+                    <div>
+                        <h3 className="mb-2 line-clamp-2">{title}</h3>
+                        <hr></hr>
+                        <h3 className=" line-clamp-1">{company.display_name}</h3>
+                    </div>
 
-                <hr></hr>
-
+                </div>
+                
                 <div className="content">
+
                     <p className="location">{location.area[1]}</p>
-                    <span> • </span>
 
                     {contract_time && (
                         <>
-                            <p className="contract_time">{contract_time.split('_').join('-')}
-                            </p><span> • </span>
+                            <span> • </span>
+                            <p className="contract_time">{contract_time.split('_').join('-')}</p>
                         </>
                     )}
                     {salary_min && salary_max && (
                         <>
+                            <span> • </span>
                             <p>{salary_min === salary_max 
                                 ? `$${salary_min.toLocaleString()}` 
                                 : `$${salary_min.toLocaleString()} - $${salary_max.toLocaleString()}`}
@@ -69,9 +76,11 @@ const JobCard: React.FC<JobCardProps> = ( {job:
                     )}
                     
                 </div>
-            </div>
 
-        </div>
+            </div>
+        
+        </Link>
+        
         
     )
 }

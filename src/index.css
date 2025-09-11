@@ -17,6 +17,7 @@
   --color-dark-100: #0f0d23;
 
   --color-sage: #728556;
+  --color-sage-100: #BFD1A5;
 
   --font-dm-sans: Roboto Mono, sans-serif;
 
@@ -49,12 +50,13 @@
   }
 
   header img {
-    @apply w-full mb-10 max-w-lg h-auto object-contain mx-auto drop-shadow-md;
+    @apply w-full max-w-lg h-auto object-contain mx-auto drop-shadow-md;
   }
 
   .footer {
     @apply ml-10 mb-10;
   }
+
 }
 
 @layer components {
@@ -111,14 +113,18 @@
   }
 
   .job-card {
-    @apply bg-sage p-5 rounded-xs shadow-inner shadow-light-100/10 flex flex-row items-start gap-4;
+    @apply bg-sage p-5 rounded-xs shadow-inner shadow-light-100/10 flex-nowrap flex-row items-start gap-4;
 
     & img {
       @apply rounded-lg h-auto w-full;
     }
 
     & h3 {
-      @apply text-white font-bold text-lg line-clamp-2;
+      @apply text-white font-bold text-lg;
+    }
+
+    & .header {
+      @apply mt-2 flex flex-row items-start gap-2;
     }
 
     & .content {
@@ -129,14 +135,6 @@
       @apply font-bold text-xs text-white;
     }
 
-    & .location {
-      @apply flex flex-row items-center gap-1;
-    }
-
-    & .rating img {
-      @apply size-4 object-contain;
-    }
-
     & .location p {
       @apply font-bold text-base text-white;
     }
@@ -145,20 +143,16 @@
       @apply text-sm text-white;
     }
 
-    & .content .lang {
-      @apply capitalize text-gray-100 font-medium text-base;
-    }
-
-    & .content .year {
-      @apply text-gray-100 font-medium text-base;
-    }
-
     hr {
       border: none; 
       height: 2px; 
       background-color: white; 
     }
   }
+}
+
+button {
+  cursor: pointer;
 }
 
 
