@@ -1,7 +1,6 @@
 import React from 'react'
 import { Link } from 'react-router-dom';
 
-
 interface Job {
   title: string;
   id: string;
@@ -25,8 +24,8 @@ interface JobCardProps {
   job: Job;
 }
 
-const JobCard: React.FC<JobCardProps> = ( {job: 
-    { id, title, company, location, created, contract_time, salary_min, salary_max, salary_is_predicted}
+const JobCard: React.FC<JobCardProps> = ( {job, job: 
+    { id, title, company, location, created, contract_time, salary_min, salary_max, salary_is_predicted }
 }) => {
 
     const guessedDomain = company.display_name.replace(/\s+/g, "").toLowerCase() + ".com";
@@ -35,7 +34,11 @@ const JobCard: React.FC<JobCardProps> = ( {job:
     const logoUrl = `https://img.logo.dev/${guessedDomain}?token=${import.meta.env.VITE_LOGO_API_KEY}&size=400`;
 
     return ( 
-        <Link to={`/job/${id}`} className="block">
+        <Link 
+            to={`/job/${company.display_name}/${id}`} 
+            state={{job}}
+            className="block"
+        >
             <div className="job-card">
                 <div className="header">
                     <img
@@ -43,7 +46,7 @@ const JobCard: React.FC<JobCardProps> = ( {job:
                         alt={`${company.display_name} logo`}
                         className="mr-2 mb-2 h-22 w-22 rounded-lg object-contain bg-white"
                         onError={ (event) => { // fallback if logo doesn’t exist
-                            (event.currentTarget as HTMLImageElement).src = "/default-company.png";
+                            (event.currentTarget as HTMLImageElement).src = `${import.meta.env.BASE_URL}default-company.png`;
                         } }
                     />
 

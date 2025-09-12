@@ -72,7 +72,7 @@ const JobList = () => {
         return;
       }
 
-      console.log(data);
+      //console.log(data);
 
       setJobList(data.results || []);
 
@@ -100,12 +100,10 @@ const JobList = () => {
   return (
     <main>
 
-      <div className="pattern" />
-
       <div className="wrapper">
         
         <header> 
-          <img className="mb-[50px]" src="./top-banner.png" alt="Job Search banner"/>
+          <img className="mb-[50px]" src={`${import.meta.env.BASE_URL}top-banner-trench.png`} alt="Job Search banner"/>
           <h1>Discover <span className="text-gradient">tech jobs</span>, trends, and more.</h1>
           <Search searchTerm={searchTerm} setSearchTerm={setSearchTerm}/>
         </header>

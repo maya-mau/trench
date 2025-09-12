@@ -4,10 +4,10 @@ import JobDetail from "./pages/JobDetail";
 
 const App = () => {
   return (
-    <Router>
+    <Router basename="/trench">
       <Routes>
         <Route path="/" element={<JobList />} />
-        <Route path="/job/:id" element={<JobDetail />} />
+        <Route path="/job/:company/:id" element={<JobDetail />} />
       </Routes>
     </Router>
   );

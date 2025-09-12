@@ -9,7 +9,7 @@ const Search = ( {searchTerm, setSearchTerm}: ComponentProps ) => {
     return (
         <div className="search">
             <div>
-                <img src="search.svg" alt="search icon"/>
+                <img src={`${import.meta.env.BASE_URL}search.svg`} alt="search icon"/>
                 <input 
                     type="text"
                     placeholder="Search through thousands of jobs"
