@@ -15,4 +15,12 @@ export default defineConfig({
     },
   },
   base: '/trench/',
+  build: {
+    rollupOptions: {
+      input: {
+        main: 'index.html',
+        404: 'index.html',
+      },
+    },
+  }
 })
