@@ -1,6 +1,5 @@
-import React, { useState, useEffect } from 'react'
+import { useState, useEffect } from 'react'
 import { useParams, useLocation } from "react-router-dom";
-import Spinner from '../components/Spinner.tsx';
 
 interface Job {
   title: string;
@@ -32,16 +31,16 @@ const jobDetail = () => {
     console.log("location", locationRouter);
 
     const [job, setJob] = useState<Job | null>(locationRouter?.state?.job || null);
-    const [isLoading, setIsLoading] = useState(false);
-    const [errorMessage, setErrorMessage] = useState('');
+    //const [isLoading, setIsLoading] = useState(false);
+    //const [errorMessage, setErrorMessage] = useState('');
     
     useEffect( () => {
         if (!job && id) {
  
             const fetchJob = async () => {
 
-                setIsLoading(true);
-                setErrorMessage('');
+                //setIsLoading(true);
+                //setErrorMessage('');
 
                 try {
                     const adzuna_response = await fetch(`/api/jobs/us/search/1?app_id=${ADZUNA_API_ID}&app_key=${ADZUNA_API_KEY}&results_per_page=10000&what=software%20${encodeURIComponent(company || '')}`);
@@ -51,7 +50,7 @@ const jobDetail = () => {
                     console.log("data", data);
 
                     if(data.Response === 'False') {
-                        setErrorMessage(data.Error || 'Failed to fetch job data.');
+                        //setErrorMessage(data.Error || 'Failed to fetch job data.');
                         setJob(null);
                         return;
                     }
@@ -61,9 +60,9 @@ const jobDetail = () => {
 
                 } catch (error) {
                     console.error(`Error fetching job data: ${error}`);
-                    setErrorMessage('Error fetching job data. Please try again later.');
+                    //setErrorMessage('Error fetching job data. Please try again later.');
                 } finally {
-                    setIsLoading(false);
+                    //setIsLoading(false);
                 }
             };
             fetchJob();
@@ -74,7 +73,8 @@ const jobDetail = () => {
 
     if (!job) return <div>Job {id} not found, please try again later.</div>;
 
-    const {title, company: company_object, location, created, contract_time, salary_min, salary_max, salary_is_predicted, redirect_url} = job;
+    // company_object, location, created, contract_time, salary_is_predicted
+    const {title, company:  salary_min, salary_max, redirect_url} = job;
 
     return (
         

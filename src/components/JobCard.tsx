@@ -25,7 +25,7 @@ interface JobCardProps {
 }
 
 const JobCard: React.FC<JobCardProps> = ( {job, job: 
-    { id, title, company, location, created, contract_time, salary_min, salary_max, salary_is_predicted }
+    { id, title, company, location, contract_time, salary_min, salary_max }
 }) => {
 
     const guessedDomain = company.display_name.replace(/\s+/g, "").toLowerCase() + ".com";

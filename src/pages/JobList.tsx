@@ -4,17 +4,13 @@ import Spinner from '../components/Spinner.tsx';
 import JobCard from '../components/JobCard.tsx';
 import { useDebounce } from 'react-use';
 
-
-const ADZUNA_API_BASE_URL = '/api';
-const ADZUNA_API_KEY = import.meta.env.VITE_ADZUNA_API_KEY;
-const ADZUNA_API_ID = import.meta.env.VITE_ADZUNA_API_ID;
 const ADZUNA_API_OPTIONS = {
   method: 'GET',
   headers: {
     accept: 'application/json',
-    Authorization: `Bearer ${ADZUNA_API_KEY}`
+    //Authorization: `Bearer ${ADZUNA_API_KEY}`
   }
-}
+} 
 
 
 interface Job {
@@ -56,9 +52,13 @@ const JobList = () => {
 
     try {
       const adzuna_endpoint = query
-        ? `${ADZUNA_API_BASE_URL}/jobs/us/search/${page}?app_id=${ADZUNA_API_ID}&app_key=${ADZUNA_API_KEY}&results_per_page=${RESULTS_PER_PAGE}&what=software%20${encodeURIComponent(query)}`
-        : `${ADZUNA_API_BASE_URL}/jobs/us/search/${page}?app_id=${ADZUNA_API_ID}&app_key=${ADZUNA_API_KEY}&results_per_page=${RESULTS_PER_PAGE}&sort_by=relevance&what=software`;
+        ? `/api/jobs/us/search/${page}?what=${encodeURIComponent(query)}`
+        : `/api/jobs/us/search/${page}`; 
+
+      console.log("➡️ Fetching:", adzuna_endpoint);
       const adzuna_response = await fetch(adzuna_endpoint, ADZUNA_API_OPTIONS);
+      //const text = await adzuna_response.text();
+      //console.log("Adzuna response:", text);
     
       if(!adzuna_response.ok) {
         throw new Error('Failed to fetch job data.');
