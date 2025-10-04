@@ -33,7 +33,7 @@ interface Job {
 }
 
 const RESULTS_PER_PAGE = 20;
-const BASE_URL = "https://trench-3ukr.onrender.com/";
+const BASE_URL = "https://trench-3ukr.onrender.com";
 
 const JobList = () => {
   const [searchTerm, setSearchTerm] = useState('');
