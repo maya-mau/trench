@@ -33,6 +33,7 @@ interface Job {
 }
 
 const RESULTS_PER_PAGE = 20;
+const BASE_URL = "https://trench-3ukr.onrender.com/";
 
 const JobList = () => {
   const [searchTerm, setSearchTerm] = useState('');
@@ -52,8 +53,8 @@ const JobList = () => {
 
     try {
       const adzuna_endpoint = query
-        ? `/api/jobs/us/search/${page}?what=${encodeURIComponent(query)}`
-        : `/api/jobs/us/search/${page}`; 
+        ? `${BASE_URL}/api/jobs/us/search/${page}?what=${encodeURIComponent(query)}`
+        : `${BASE_URL}/api/jobs/us/search/${page}`; 
 
       console.log("➡️ Fetching:", adzuna_endpoint);
       const adzuna_response = await fetch(adzuna_endpoint, ADZUNA_API_OPTIONS);
